@@ -1,0 +1,97 @@
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.Random;
+
+
+public class MainActivity extends AppCompatActivity {
+
+    public String result;
+    public int num = 0;
+    public int flag = 0;
+    Random rand = new Random();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+    }
+
+    public void generateTwenty(View view) {
+        flag = 20;
+        num = 1 + rand.nextInt(20);
+        result = String.valueOf(num);
+
+        TextView resultText = (TextView)findViewById(R.id.roll_result);
+        resultText.setText(result);
+
+    }
+
+    public void generateTen(View view) {
+        flag = 10;
+        num = 1 + rand.nextInt(10);
+        result = String.valueOf(num);
+
+        TextView resultText = (TextView)findViewById(R.id.roll_result);
+        resultText.setText(result);
+
+    }
+
+    public void generateEight(View view) {
+        flag = 8;
+        Random rand = new Random();
+        num = 1 + rand.nextInt(8);
+        result = String.valueOf(num);
+
+        TextView resultText = (TextView)findViewById(R.id.roll_result);
+        resultText.setText(result);
+
+    }
+
+    public void generateSix(View view) {
+        flag = 6;
+        num = 1 + rand.nextInt(6);
+        result = String.valueOf(num);
+
+        TextView resultText = (TextView)findViewById(R.id.roll_result);
+        resultText.setText(result);
+    }
+
+    public void generateFour(View view) {
+        flag = 4;
+        num = 1 + rand.nextInt(4);
+        result = String.valueOf(num);
+
+        TextView resultText = (TextView)findViewById(R.id.roll_result);
+        resultText.setText(result);
+
+    }
+
+    public void btnClear(View view) {
+
+        TextView resultText = (TextView)findViewById(R.id.roll_result);
+        if (!(resultText == null)){
+            resultText.setText(null);
+            flag = 0;
+        }
+
+    }
+
+    public void btnAddRoll(View view) {
+
+         if(flag != 0) {
+             Intent myIntent = new Intent(this, AdditionalRoll.class);
+             myIntent.putExtra("passRoll", num);
+             myIntent.putExtra("passFlag", flag);
+             startActivity(myIntent);
+         }
+
+    }
+}
+
